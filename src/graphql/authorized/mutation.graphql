@@ -1,0 +1,48 @@
+type Mutation {
+    deleteSession(id: Int!): String
+
+    deleteTypeProductById(codigo: Int!): TypeProduct!
+    createTypeProduct(nombre: String!,
+                        descripcion: String!,
+                        es_producto: Boolean!,
+                        activo: Boolean!): TypeProduct!
+    updateTypeProduct(codigo: Int!,
+                        nombre: String!,
+                        descripcion: String!,
+                        es_producto: Boolean!,
+                        activo: Boolean!): TypeProduct!
+
+    deleteProductById(codigo: Int!): Product!
+    createProduct(nombre: String!,
+                        descripcion: String!,
+                        activo: Boolean!,
+                        tipo_producto: Int!): Product!
+    updateProduct(codigo: Int!,
+                        nombre: String!,
+                        descripcion: String!,
+                        activo: Boolean!,
+                        tipo_producto: Int!): Product!
+
+    deletePointSaleById(codigo: Int!): PointSale!
+    createPointSale(nombre: String!,
+                        descripcion: String!,
+                        activo: Boolean!,
+                        cantidad: Int!): PointSale!
+    updatePointSale(codigo: Int!,
+                        nombre: String!,
+                        descripcion: String!,
+                        activo: Boolean!,
+                        cantidad: Int!): PointSale!
+
+    deleteProductPointSaleById(codigo: Int!): ProductPointSale!
+    createProductPointSale(producto: Int!,
+                        punto_venta: Int!,
+                        precio: Float!,
+                        activo: Boolean!): ProductPointSale!
+    updateProductPointSale(codigo: Int!,
+                        producto: Int!,
+                        punto_venta: Int!,
+                        precio: Float!,
+                        activo: Boolean!): ProductPointSale!
+
+}

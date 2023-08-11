@@ -1,0 +1,49 @@
+type User {
+    codigo: Int!
+    nombre: String!
+    correo: String!
+    activo: Boolean
+    password: String!
+    token: String!
+    vencimiento: String!
+    inicio: String!
+}
+
+type Rol{
+    codigo: Int!
+    nombre: String!
+    descripcion: String!
+    activo: Boolean!
+}
+
+type TypeProduct{
+    codigo: Int!
+    nombre: String!
+    descripcion: String!
+    es_producto: Boolean!
+    activo: Boolean!
+}
+
+type Product{
+    codigo: Int!
+    nombre: String!
+    descripcion: String!
+    activo: Boolean!
+    tipo_producto: Int!
+}
+
+type PointSale{
+    codigo: Int!
+    nombre: String!
+    descripcion: String!
+    activo: Boolean!
+    cantidad: Int!
+}
+
+type ProductPointSale{
+    codigo: Int!
+    producto: Int!
+    punto_venta: Int!
+    precio: Float!
+    activo: Boolean!
+}

@@ -1,0 +1,15 @@
+{
+    "serverPort": 4444,
+    "db": {
+        "host": "localhost",
+        "dialect": "postgres",
+        "database": "app_venta",
+        "username": "postgres",
+        "password": "1234",
+        "port": 5432
+    },
+    "security":{
+        "secretKey": "4PP_Y4d1r4",
+        "expiresIn": "7d"
+    }
+}
