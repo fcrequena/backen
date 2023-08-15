@@ -67,3 +67,18 @@ export interface IProductPointSale{
     precio: number;
     activo: boolean;
 }
+
+export interface ITypeCost{
+    codigo: number;
+    nombre: string;
+    descripcion: string;
+    es_gasto: boolean;
+    activo: boolean;
+}
+
+export interface ICost{
+    codigo
+    nombre
+    descripcion
+    activo
+}

@@ -33,7 +33,6 @@ export default class PointSaleQueryService {
                 `
 
             const result = await pool.query(query);
-            console.log({result})
             return result.rows;
         } catch (error) {
             console.error('Error al obtener puntos de venta', error)

@@ -40,4 +40,23 @@ export default class ProductPointSaleQueryService {
             return []
         }
     }
+    async getFindByPointSaleId(codigo: number): Promise<IProductPointSale[]>{
+        try {
+            const query = `SELECT 
+                    ppv_codigo as codigo, 
+                    ppv_codpro as producto,
+                    ppv_codpuv as punto_venta,
+                    ppv_precio as precio,
+                    ppv_activo as activo
+                FROM public.ppv_producto_punto_venta
+                    where ppv_codpuv = ${codigo};
+                `
+
+            const result = await pool.query(query);
+            return result.rows;
+        } catch (error) {
+            console.error('Error al obtener puntos de venta', error)
+            return []
+        }
+    }
 }

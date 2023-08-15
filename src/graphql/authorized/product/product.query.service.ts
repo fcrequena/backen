@@ -33,7 +33,6 @@ export default class ProductQueryService {
                 `
 
             const result = await pool.query(query);
-            console.log({result})
             return result.rows;
         } catch (error) {
             console.error('Error al obtener productos', error)

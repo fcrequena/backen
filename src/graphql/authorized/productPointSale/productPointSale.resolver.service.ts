@@ -3,8 +3,13 @@ import ProductPointSaleMutationService from "./producPointSale.mutation.service"
 import ProductPointSaleQueryService from "./productPointSale.query.service";
 import { valProductPointSale } from "../../../middlewares/middleware.validation";
 
+import ProductQueryService from "../product/product.query.service";
+
 const productPointSaleQueryService = new  ProductPointSaleQueryService();
 const productPointSaleMutationService  = new  ProductPointSaleMutationService();
+
+const productQueryService = new ProductQueryService();
+
 const productoPointSaleResolver = {
     Query: {
         getAllProductPointSale(parent, params, ctx){
@@ -29,6 +34,23 @@ const productoPointSaleResolver = {
             )
             return productPointSaleQueryService.getProductPointSaleById(codigo);
         },
+        getFindByPointSaleId(parent, {codigo}, ctx){
+            middlewareCheck(
+                [
+                    {type: MiddlewareType.AUTH},
+                    {type: MiddlewareType.ACL, 
+                        roles: ['prod_sale_search']}
+                ],
+                ctx
+            )
+            return productPointSaleQueryService.getFindByPointSaleId(codigo);
+        }
+    },
+    ProductPointSale:{
+        producto: (parent) => {
+            const products = productQueryService.getProductoById(parent.producto)
+            return products
+        }
     },
     Mutation: {
         async deleteProductPointSaleById(parent, params, ctx){

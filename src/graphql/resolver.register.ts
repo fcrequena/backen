@@ -7,13 +7,16 @@ import productoResolver from "./authorized/product/product.resolver.service";
 import pointSaleResolver from "./authorized/point_sale/point_sale.resolver.service";
 import productoPointSaleResolver from "./authorized/productPointSale/productPointSale.resolver.service";
 
+import typeCostResolver from "./authorized/typeCost/typeCost.resolver.service";
+
 export const RESOLVERS = {
     authorized: [
         userResolver,
         typeProductResolver,
         productoResolver,
         pointSaleResolver,
-        productoPointSaleResolver
+        productoPointSaleResolver,
+        typeCostResolver
     ],
     unauthorized: [
         authResolver
