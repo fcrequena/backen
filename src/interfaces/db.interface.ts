@@ -74,11 +74,13 @@ export interface ITypeCost{
     descripcion: string;
     es_gasto: boolean;
     activo: boolean;
+    
 }
 
 export interface ICost{
-    codigo
-    nombre
-    descripcion
-    activo
+    codigo: number;
+    nombre: string;
+    descripcion: string;
+    activo: boolean;
+    tipo_gasto: number;
 }

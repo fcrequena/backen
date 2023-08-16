@@ -71,4 +71,5 @@ type Cost{
     nombre: String!
     descripcion: String!
     activo: boolean!
+    tipo_gasto: Int!
 }
