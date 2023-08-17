@@ -44,18 +44,20 @@ const pointSaleResolver = {
             const producto = await productQueryService.getAllProduct();    
 
             let arrayProductos = [];// = new Array<IProduct> ;
-            product_PointSale.forEach(ppSale => {
-                const resul = producto.find( (prod) => prod.codigo == ppSale.producto)
-                let {codigo, nombre, descripcion, activo, tipo_producto} = resul;
 
-                arrayProductos.push( {
-                    puv_codigo: ppSale.codigo, 
-                    pro_codigo: codigo, 
-                    pro_nombre: nombre, 
-                    pro_descripcion: descripcion, 
-                    puv_precio: ppSale.precio, 
-                    puv_activo: ppSale.activo
-                } )
+            product_PointSale.forEach(ppSale => {
+                const resultado = producto.find( (prod) => prod.codigo == ppSale.producto)
+                console.log({resultado})
+                // let {codigo, nombre, descripcion, activo, tipo_producto} = resultado;
+
+                // arrayProductos.push( {
+                //     puv_codigo: ppSale.codigo, 
+                //     pro_codigo: codigo, 
+                //     pro_nombre: nombre, 
+                //     pro_descripcion: descripcion, 
+                //     puv_precio: ppSale.precio, 
+                //     puv_activo: ppSale.activo
+                // } )
 
             })
             return arrayProductos

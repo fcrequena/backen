@@ -84,3 +84,10 @@ export interface ICost{
     activo: boolean;
     tipo_gasto: number;
 }
+export interface ICostPointSale{
+    codigo: number;
+    gasto: number;
+    punto_venta: number;
+    precio: number;
+    activo: boolean;
+}

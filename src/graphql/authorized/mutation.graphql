@@ -49,21 +49,31 @@ type Mutation {
     createTypeCost( nombre: String!
                     descripcion: String!
                     es_gasto: Boolean!
-                    activo: Boolean!
-    ): TypeCost!
+                    activo: Boolean!): TypeCost!
     updateTypeCost(codigo: Int!
                     nombre: String!
                     descripcion: String!
                     es_gasto: Boolean!
-                    activo: Boolean!
-    ): TypeCost!
+                    activo: Boolean!): TypeCost!
 
     deleteCost(codigo: Int!): Cost!
-    createCost(nombre: string!
-                descripcion: string!
-                activo: boolean!): Cost!
+    createCost(nombre: String!
+                descripcion: String!
+                activo: Boolean!): Cost!
     updateCost(codigo: Int!
-                nombre: string!
-                descripcion: string!
-                activo: boolean!): Cost!
+                nombre: String!
+                descripcion: String!
+                activo: Boolean!): Cost!
+
+    deleteCostPointSaleById(codigo: Int!): CostPointSale!
+    createCostPointSale(gasto: Int!,
+                        punto_venta: Int!,
+                        precio: Float!,
+                        activo: Boolean!): CostPointSale!
+    updateCostPointSale(codigo: Int!,
+                        gasto: Int!,
+                        punto_venta: Int!,
+                        precio: Float!,
+                        activo: Boolean!): CostPointSale!
+
 }

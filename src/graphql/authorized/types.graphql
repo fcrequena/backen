@@ -70,6 +70,14 @@ type Cost{
     codigo: Int!
     nombre: String!
     descripcion: String!
-    activo: boolean!
+    activo: Boolean!
     tipo_gasto: Int!
+}
+
+type CostPointSale{
+    codigocodigo: Int!
+    gasto: [Cost!]
+    punto_venta: Int!
+    precio: Float!
+    activo: Boolean!
 }

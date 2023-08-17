@@ -7,7 +7,7 @@ const typeCostQueryService = new TypeCostQueryService();
 const typeCostMutationService = new TypeCostMutationService();
 
 const typeCostResolver = {
-    query: {
+    Query: {
         getAllTypeCost(parent, params, ctx){
             middlewareCheck(
                 [
@@ -20,7 +20,7 @@ const typeCostResolver = {
 
             return typeCostQueryService.getAllTypeCost();
         },
-        getTypeCostById(parent, params, ctx){
+        getTypeCostById(parent, {codigo}, ctx){
             middlewareCheck(
                 [
                     {type: MiddlewareType.AUTH},
@@ -30,21 +30,21 @@ const typeCostResolver = {
                 ctx
             )
 
-            return typeCostQueryService.getTypeCostById(params);
+            return typeCostQueryService.getTypeCostById(codigo);
         }
     },
-    mutation: {
-        deleteCostType(parent, params, ctx){
+    Mutation: {
+        deleteTypeCost(parent, params, ctx){
             middlewareCheck([{type: MiddlewareType.AUTH}, {type: MiddlewareType.ACL, roles: ['type_cost_delete']}], ctx)
 
             return typeCostMutationService.deleteTypeCostById(params);
         },
-        createCostType(parent, params, ctx){
+        createTypeCost(parent, params, ctx){
             middlewareCheck([{type: MiddlewareType.AUTH}, {type: MiddlewareType.ACL, roles: ['type_cost_create']}], ctx)
 
             return typeCostMutationService.createTypeCost(params);
         },
-        updateCostType(parent, params, ctx){
+        updateTypeCost(parent, params, ctx){
             middlewareCheck([{type: MiddlewareType.AUTH}, {type: MiddlewareType.ACL, roles: ['type_cost_update']}], ctx)
 
             return typeCostMutationService.updateTypeCost(params);

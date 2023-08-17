@@ -114,10 +114,45 @@ export const valTypeProduct = async ( params, action ) => {
 
  export const valProductPointSale = async ( params, action ) => {
     const {codigo = undefined, producto, punto_venta, precio, activo} = params;
-console.log({precio})
+
     if(action === 'create' || action === 'update'){
 
         if(!producto || !punto_venta || !precio || activo === undefined){
+            throw new Error('Todos los campos son obligatorios');
+        }
+
+        if(precio < 0){
+            throw new Error('El precio no puede ser negativo');
+        }
+
+    }
+
+    //se maneja por constraint de la base de datos. 
+    //if(action === 'create'){
+
+    //     //validamos si el nombre existe
+    //     const query = `select * from puv_punto_venta where puv_nombre = '${nombre}'`;
+
+    //     const result = await pool.query(query);
+    //     if(result.rowCount !== 0){
+    //         throw new Error('El nombre del Punto de venta ya existe.');
+    //     }
+    // }
+
+    if(action === 'update' || action === 'delete'){
+        if(!codigo){
+            throw new Error('Todos los campos son obligatorios');
+        }
+    }
+ } 
+
+
+ export const valCostPointSale = async ( params, action ) => {
+    const {codigo = undefined, gasto, punto_venta, precio, activo} = params;
+
+    if(action === 'create' || action === 'update'){
+
+        if(!gasto || !punto_venta || !precio || activo === undefined){
             throw new Error('Todos los campos son obligatorios');
         }
 
