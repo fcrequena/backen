@@ -17,7 +17,12 @@ export default class AuthQueryService {
 
             const result = await pool.query(query);
             const usuario = result.rows[0]
-            
+
+            if(usuario == undefined){
+                throw new Error("El usuario no existe en el sistema.");
+                
+            }
+            console.log({usuario})
             const passValido = await validarHashPassword(usuario.nombre, password, usuario.password)
             
             if(passValido.response === false){

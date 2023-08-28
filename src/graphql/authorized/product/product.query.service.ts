@@ -14,6 +14,8 @@ export default class ProductQueryService {
                 `
 
             const result = await pool.query(query);
+console.log({producto: result.rows})
+
             return result.rows;
         } catch (error) {
             console.error('Error al obtener productos', error)

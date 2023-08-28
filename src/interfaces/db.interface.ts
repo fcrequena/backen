@@ -67,27 +67,3 @@ export interface IProductPointSale{
     precio: number;
     activo: boolean;
 }
-
-export interface ITypeCost{
-    codigo: number;
-    nombre: string;
-    descripcion: string;
-    es_gasto: boolean;
-    activo: boolean;
-    
-}
-
-export interface ICost{
-    codigo: number;
-    nombre: string;
-    descripcion: string;
-    activo: boolean;
-    tipo_gasto: number;
-}
-export interface ICostPointSale{
-    codigo: number;
-    gasto: number;
-    punto_venta: number;
-    precio: number;
-    activo: boolean;
-}

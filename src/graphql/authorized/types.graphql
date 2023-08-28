@@ -57,27 +57,3 @@ type ProductPointSale{
     precio: Float!
     activo: Boolean!
 }
-
-type TypeCost{
-    codigo: Int!
-    nombre: String!
-    descripcion: String!
-    es_gasto: Boolean!
-    activo: Boolean!
-}
-
-type Cost{
-    codigo: Int!
-    nombre: String!
-    descripcion: String!
-    activo: Boolean!
-    tipo_gasto: Int!
-}
-
-type CostPointSale{
-    codigocodigo: Int!
-    gasto: [Cost!]
-    punto_venta: Int!
-    precio: Float!
-    activo: Boolean!
-}

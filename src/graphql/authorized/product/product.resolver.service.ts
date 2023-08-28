@@ -15,6 +15,8 @@ const productResolve = {
                 ],
                 ctx
             )
+                console.log({ctx})
+
             return productQueryService.getAllProduct();
         },
         getProductById(parent, {codigo}, ctx){

@@ -12,6 +12,7 @@ export default class TypeQueryService {
                 tip_activo as activo
             FROM tip_tipo_producto`
             const result = await pool.query(query);
+            console.log(result.rows)
             return result.rows;
             
         } catch (error) {
