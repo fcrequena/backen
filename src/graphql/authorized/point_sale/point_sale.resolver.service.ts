@@ -47,17 +47,17 @@ const pointSaleResolver = {
 
             product_PointSale.forEach(ppSale => {
                 const resultado = producto.find( (prod) => prod.codigo == ppSale.producto)
-                console.log({resultado})
-                // let {codigo, nombre, descripcion, activo, tipo_producto} = resultado;
+                
+                let {codigo, nombre, descripcion, activo, tipo_producto} = resultado;
 
-                // arrayProductos.push( {
-                //     puv_codigo: ppSale.codigo, 
-                //     pro_codigo: codigo, 
-                //     pro_nombre: nombre, 
-                //     pro_descripcion: descripcion, 
-                //     puv_precio: ppSale.precio, 
-                //     puv_activo: ppSale.activo
-                // } )
+                arrayProductos.push( {
+                    codigo_punto_venta: ppSale.codigo, 
+                    codigo: codigo, 
+                    nombre: nombre, 
+                    descripcion: descripcion, 
+                    precio: ppSale.precio, 
+                    activo: ppSale.activo
+                } )
 
             })
             return arrayProductos
@@ -77,7 +77,6 @@ const pointSaleResolver = {
             return result;
         },
         async createPointSale(parent, params, ctx){
-            console.log({resolver: params})
             middlewareCheck([
                 {type: MiddlewareType.AUTH},
                 {type: MiddlewareType.ACL,

@@ -16,14 +16,6 @@ type Rol{
     activo: Boolean!
 }
 
-type TypeProduct{
-    codigo: Int!
-    nombre: String!
-    descripcion: String!
-    es_producto: Boolean!
-    activo: Boolean!
-}
-
 type Product{
     codigo: Int!
     nombre: String!
@@ -32,13 +24,22 @@ type Product{
     tipo_producto: Int!
 }
 
+type TypeProduct{
+    codigo: Int!
+    nombre: String!
+    descripcion: String!
+    es_producto: Boolean!
+    activo: Boolean!
+    productos: [Product!]
+}
+
 type ProductDetail{
-    puv_codigo: Int!
-    pro_codigo: Int!
-    pro_nombre: String!
-    pro_descripcion: String!
-    puv_precio: Float!
-    puv_activo: Boolean!
+    codigo_punto_venta: Int!
+    codigo: Int!
+    nombre: String!
+    descripcion: String!
+    precio: Float!
+    activo: Boolean!
 }
 
 type PointSale{
@@ -52,7 +53,7 @@ type PointSale{
 
 type ProductPointSale{
     codigo: Int!
-    producto: [Product!]
+    producto: Int!
     punto_venta: Int!
     precio: Float!
     activo: Boolean!

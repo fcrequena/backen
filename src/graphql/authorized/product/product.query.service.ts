@@ -9,12 +9,11 @@ export default class ProductQueryService {
                     pro_nombre as nombre, 
                     pro_descripcion as descripcion, 
                     pro_activo as activo, 
-                    pro_codtpr as tipo_producto 
+                    pro_codtip as tipo_producto 
                 FROM public.pro_producto;
                 `
 
             const result = await pool.query(query);
-console.log({producto: result.rows})
 
             return result.rows;
         } catch (error) {
@@ -29,11 +28,29 @@ console.log({producto: result.rows})
                     pro_nombre as nombre, 
                     pro_descripcion as descripcion, 
                     pro_activo as activo, 
-                    pro_codtpr as tipo_producto 
+                    pro_codtip as tipo_producto 
                 FROM public.pro_producto
                     where pro_codigo = ${codigo};
                 `
 
+            const result = await pool.query(query);
+            return result.rows;
+        } catch (error) {
+            console.error('Error al obtener productos', error)
+            return []
+        }
+    }
+
+    async getProductoByTypeProductId(codigo: number): Promise<IProduct[]>{
+        try {
+            const query = `SELECT 
+                            pro_codigo as codigo, 
+                            pro_nombre as nombre, 
+                            pro_descripcion as descripcion, 
+                            pro_activo as activo, 
+                            pro_codtip as tipo_producto 
+                        FROM public.pro_producto
+                            where pro_codtip = ${codigo};`
             const result = await pool.query(query);
             return result.rows;
         } catch (error) {

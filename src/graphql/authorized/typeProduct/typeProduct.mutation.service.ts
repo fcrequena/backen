@@ -20,7 +20,7 @@ export default class TypeProductMutationService {
 
             return result.rows[0]
         } catch (error) {
-            console.log({deleteTypeProductById: error})
+            console.error({deleteTypeProductById: error})
             return []
         }
     }
@@ -45,7 +45,7 @@ export default class TypeProductMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.log({createTypeProduct: error})
+            console.error({createTypeProduct: error})
             return []
         }
     }
@@ -75,7 +75,7 @@ export default class TypeProductMutationService {
 
             return result.rows[0]
         } catch (error) {
-            console.log({updateTypeProduct: error})
+            console.error({updateTypeProduct: error})
             return []
         }
     }

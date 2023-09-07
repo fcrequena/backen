@@ -44,7 +44,7 @@ export default class AUTHQueryService {
             return result.rows;
 
         } catch (error) {
-            console.log({rolUsers: error})
+            console.error({rolUsers: error})
             return []
         }
     }

@@ -11,7 +11,7 @@ export default class ProductMutationService {
                                         pro_nombre as nombre,
                                         pro_descripcion as descripcion,
                                         pro_activo as activo,
-                                        pro_codtpr as tipo_producto;`;
+                                        pro_codtip as tipo_producto;`;
 
             const result = await pool.query(query);
 
@@ -28,13 +28,13 @@ export default class ProductMutationService {
         const { nombre, descripcion, activo, tipo_producto} = params
         try {
             const query = `INSERT INTO public.pro_producto
-            (pro_nombre, pro_descripcion, pro_activo, pro_codtpr)
+            (pro_nombre, pro_descripcion, pro_activo, pro_codtip)
             VALUES('${nombre}', '${descripcion}', ${activo}, ${tipo_producto})
             RETURNING pro_codigo as codigo, 
                         pro_nombre as nombre,
                         pro_descripcion as descripcion,
                         pro_activo as activo,
-                        pro_codtpr as tipo_producto;`;
+                        pro_codtip as tipo_producto;`;
 
             const result = await pool.query(query);
 
@@ -55,13 +55,13 @@ export default class ProductMutationService {
                 SET pro_nombre='${nombre}', 
                     pro_descripcion='${descripcion}', 
                     pro_activo=${activo},
-                    pro_codtpr=${tipo_producto} 
+                    pro_codtip=${tipo_producto} 
                 WHERE pro_codigo = ${codigo}
                 RETURNING pro_codigo as codigo, 
                             pro_nombre as nombre,
                             pro_descripcion as descripcion,
                             pro_activo as activo,
-                            pro_codtpr as tipo_producto;`;
+                            pro_codtip as tipo_producto;`;
 
             const result = await pool.query(query);
 

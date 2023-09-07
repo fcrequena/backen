@@ -22,7 +22,6 @@ export default class AuthQueryService {
                 throw new Error("El usuario no existe en el sistema.");
                 
             }
-            console.log({usuario})
             const passValido = await validarHashPassword(usuario.nombre, password, usuario.password)
             
             if(passValido.response === false){

@@ -6,7 +6,7 @@ import AuthMiddleware from "./middlewares/auth/auth.middleware";
 import { generateMiddlewareGraphql } from "./middlewares/graphql-express/graphql-express.middleware";
 
 (async () => {
-    const PORT = 5000;
+    const PORT = 8000;
     const API_PATH = '/graphql';
 
     const app = express();

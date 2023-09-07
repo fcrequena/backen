@@ -4,8 +4,8 @@ export const valTypeProduct = async ( params, action ) => {
     const {codigo = undefined, nombre, descripcion, es_producto, activo} = params;
 
     if(action === 'create' || action === 'update'){
-
-        if(!nombre || !descripcion || !es_producto || !activo){
+ 
+        if(!nombre || !descripcion || !es_producto === undefined || activo === undefined){
             throw new Error('Todos los campos son obligatorios');
         }
         
@@ -128,17 +128,19 @@ export const valTypeProduct = async ( params, action ) => {
     }
 
     //se maneja por constraint de la base de datos. 
-    //if(action === 'create'){
+    if(action === 'create'){
+        const query = `SELECT * 
+                        FROM ppv_producto_punto_venta pppv 
+                        WHERE ppv_codpro = ${producto}
+                                and ppv_codpuv  = ${punto_venta}`
+        const result = await pool.query(query);
 
-    //     //validamos si el nombre existe
-    //     const query = `select * from puv_punto_venta where puv_nombre = '${nombre}'`;
+        if(result.rowCount !== 0){
+            throw new Error('El producto ó servicio ya se encuentra asociado al punto de venta.');
+        }
 
-    //     const result = await pool.query(query);
-    //     if(result.rowCount !== 0){
-    //         throw new Error('El nombre del Punto de venta ya existe.');
-    //     }
-    // }
-
+    }
+ 
     if(action === 'update' || action === 'delete'){
         if(!codigo){
             throw new Error('Todos los campos son obligatorios');
