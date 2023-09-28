@@ -3,8 +3,11 @@ import TypeProductQueryService from "./typeProduct.query.service";
 import { middlewareCheck, MiddlewareType } from "../../../middlewares/middleware.check";
 import {valTypeProduct} from "../../../middlewares/middleware.validation";
 
+import ProductQueryService from "../product/product.query.service";
+
 const typeProductMutationService = new TypeProductMutationService();
 const typeProductQueryService = new TypeProductQueryService();
+const productQueryService = new ProductQueryService();
 
 const typeProductResolver = {
     Query: {
@@ -25,6 +28,27 @@ const typeProductResolver = {
             ],ctx)
 
             return typeProductQueryService.getTypeProductById(codigo);
+        }
+    },
+    TypeProduct:{
+        productos: async (params) => {
+            const producto = await productQueryService.getProductoByTypeProductId(params.codigo)
+            let arrayProductos = [];// = new Array<IProduct> ;
+
+            producto.forEach(vProducto => {
+                arrayProductos.push(
+                    {
+                        codigo: vProducto.codigo,
+                        nombre: vProducto.nombre,
+                        descripcion: vProducto.descripcion,
+                        activo: vProducto.activo,
+                        tipo_producto: vProducto.tipo_producto
+                    }
+                )
+            })
+
+            return arrayProductos
+            
         }
     },
     Mutation: {

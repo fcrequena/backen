@@ -28,6 +28,7 @@ type Mutation {
                         descripcion: String!,
                         activo: Boolean!,
                         cantidad: Int!): PointSale!
+                        
     updatePointSale(codigo: Int!,
                         nombre: String!,
                         descripcion: String!,
@@ -35,45 +36,16 @@ type Mutation {
                         cantidad: Int!): PointSale!
 
     deleteProductPointSaleById(codigo: Int!): ProductPointSale!
+
     createProductPointSale(producto: Int!,
                         punto_venta: Int!,
                         precio: Float!,
                         activo: Boolean!): ProductPointSale!
+
     updateProductPointSale(codigo: Int!,
                         producto: Int!,
                         punto_venta: Int!,
                         precio: Float!,
                         activo: Boolean!): ProductPointSale!
-
-    deleteTypeCost(codigo: Int!): TypeCost!
-    createTypeCost( nombre: String!
-                    descripcion: String!
-                    es_gasto: Boolean!
-                    activo: Boolean!): TypeCost!
-    updateTypeCost(codigo: Int!
-                    nombre: String!
-                    descripcion: String!
-                    es_gasto: Boolean!
-                    activo: Boolean!): TypeCost!
-
-    deleteCost(codigo: Int!): Cost!
-    createCost(nombre: String!
-                descripcion: String!
-                activo: Boolean!): Cost!
-    updateCost(codigo: Int!
-                nombre: String!
-                descripcion: String!
-                activo: Boolean!): Cost!
-
-    deleteCostPointSaleById(codigo: Int!): CostPointSale!
-    createCostPointSale(gasto: Int!,
-                        punto_venta: Int!,
-                        precio: Float!,
-                        activo: Boolean!): CostPointSale!
-    updateCostPointSale(codigo: Int!,
-                        gasto: Int!,
-                        punto_venta: Int!,
-                        precio: Float!,
-                        activo: Boolean!): CostPointSale!
 
 }

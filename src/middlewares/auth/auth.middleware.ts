@@ -23,13 +23,13 @@ export const AuthMiddleware = async (request, response, next: express.NextFuncti
     //validamos si sigue vigente
     let fecha = new Date()
     let vencimiento = new Date(existToken.vencimiento)
-    console.log(vencimiento, fecha)
+    
     
     if(vencimiento < fecha){
         return next()
     }
        
-
+    console.log(vencimiento, fecha, "auth.middleware")
     //obtenemos roles
     const roles = await usuarios.rolUsers(existToken.codigo);
     const arrRoles = roles.map( rol => rol.nombre)

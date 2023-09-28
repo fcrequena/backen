@@ -15,12 +15,4 @@ type Query {
     getProductPointSaleById(codigo: Int!): [ProductPointSale]!
     getFindByPointSaleId(codigo: Int!): [ProductPointSale]!
 
-    getAllTypeCost: [TypeCost!]!
-    getTypeCostById(codigo: Int!): [TypeCost!]!
-
-    getAllCost: [Cost!]!
-    getCostById(codigo: Int!): [Cost!]!
-
-    getAllCostPointSale: [CostPointSale!]!
-    getCostPointSaleById(codigo: Int!): [CostPointSale]!
 }

@@ -40,4 +40,5 @@ export default class TypeQueryService {
             return []
         }
     }
+    
 }

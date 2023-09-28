@@ -15,6 +15,7 @@ const productResolve = {
                 ],
                 ctx
             )
+
             return productQueryService.getAllProduct();
         },
         getProductById(parent, {codigo}, ctx){
@@ -43,7 +44,6 @@ const productResolve = {
             return result;
         },
         async createProduct(parent, params, ctx){
-            console.log({resolver: params})
             middlewareCheck([
                 {type: MiddlewareType.AUTH},
                 {type: MiddlewareType.ACL,
