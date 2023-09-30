@@ -15,4 +15,5 @@ type Query {
     getProductPointSaleById(codigo: Int!): [ProductPointSale]!
     getFindByPointSaleId(codigo: Int!): [ProductPointSale]!
 
+    getReportJournal(codigo_punto_venta: Int!): [RepJournal!]!
 }

@@ -58,3 +58,35 @@ type ProductPointSale{
     precio: Float!
     activo: Boolean!
 }
+
+type RepJournalDetail{
+    codigo_punto_venta: Int!
+    codigo_tipo_producto: Int!
+    nombre_tipo_producto: String!
+    codigo_producto: Int!
+    nombre_producto: String!
+    precio: Float!
+    cantidad: Int!
+    total: Float!
+}
+
+type RepJournal{
+    codigo: Int!
+    nombre: String!
+    descripcion: String!
+    activo: Boolean!
+    cantidad: Int!
+    fecha: String!
+    productos: [RepJournalDetail!]
+}
+
+type JournalDetail{
+    codigo: Int!, 
+    codigo_dia: Int!, 
+    codigo_producto: Int!, 
+    cantidad: Int!, 
+    cantidad_personas: Int!, 
+    descripcion: String!   
+}
+
+

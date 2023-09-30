@@ -48,4 +48,12 @@ type Mutation {
                         precio: Float!,
                         activo: Boolean!): ProductPointSale!
 
+    createJournalDetail(
+        codigo: Int!, 
+        codigo_dia: Int!, 
+        codigo_producto: Int!, 
+        cantidad: Int!, 
+        cantidad_personas: Int!, 
+        descripcion: String!
+    ): JournalDetail
 }

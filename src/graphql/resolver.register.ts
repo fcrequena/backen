@@ -7,6 +7,8 @@ import productoResolver from "./authorized/product/product.resolver.service";
 import pointSaleResolver from "./authorized/point_sale/point_sale.resolver.service";
 import productoPointSaleResolver from "./authorized/productPointSale/productPointSale.resolver.service";
 
+import journalResolve from "./authorized/journal/journal.resolver.service";
+
 export const RESOLVERS = {
     authorized: [
         userResolver,
@@ -14,6 +16,7 @@ export const RESOLVERS = {
         productoResolver,
         pointSaleResolver,
         productoPointSaleResolver,
+        journalResolve
     ],
     unauthorized: [
         authResolver

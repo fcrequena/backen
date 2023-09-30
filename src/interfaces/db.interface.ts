@@ -67,3 +67,30 @@ export interface IProductPointSale{
     precio: number;
     activo: boolean;
 }
+
+export interface IJournal{
+    codigo: number;
+    codigo_dia: number;
+    codigo_producto: number;
+    cantidad: number;
+    cantidad_personas: number;
+    descripcion: string;
+}
+
+export interface IRepJournal{
+    codigo: number;
+    nombre: string;
+    descripcion: string;
+    activo: boolean;
+    cantidad: number;
+    fecha: Date;
+}
+
+export interface IRepJournalDetail{
+    codigo: number; 
+    codigo_dia: number; 
+    codigo_producto: number; 
+    cantidad: number; 
+    cantidad_personas: number; 
+    descripcion: string;  
+}

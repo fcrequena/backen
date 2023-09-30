@@ -29,7 +29,7 @@ export const AuthMiddleware = async (request, response, next: express.NextFuncti
         return next()
     }
        
-    console.log(vencimiento, fecha, "auth.middleware")
+    console.log(vencimiento, fecha, "auth.middleware - pancho")
     //obtenemos roles
     const roles = await usuarios.rolUsers(existToken.codigo);
     const arrRoles = roles.map( rol => rol.nombre)
