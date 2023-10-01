@@ -1,5 +1,21 @@
 type Mutation {
     deleteSession(id: Int!): String
+    createUser( nombre: String!, 
+                correo: String!,
+                contrasena: String!
+            ):  User!
+
+    updatePasswordUser(
+                codigo: Int!,
+                contrasena: String!
+            ): User!
+
+    updateUser(
+        codigo: Int!,
+        nombre: String!,
+        correo: String!,
+        estado: Boolean
+    ): User!
 
     deleteTypeProductById(codigo: Int!): TypeProduct!
     createTypeProduct(nombre: String!,

@@ -30,6 +30,3 @@ export const validarHashPassword = async (username, password, user_password) => 
         message: token
     };
 }
-
-
-//export default createHashPassword;

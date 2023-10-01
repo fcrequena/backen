@@ -36,6 +36,44 @@ const userResolver = {
 
             middlewareCheck([{type: MiddlewareType.AUTH}, {type: MiddlewareType.ACL, roles: ['user_session_del']}], ctx)
             return userMutationService.deleteSession(id);
+        },
+        async createUser(parent, params, ctx){
+            middlewareCheck([
+                {type: MiddlewareType.AUTH},
+                {type: MiddlewareType.ACL,
+                    roles: ['user_create']}
+            ], ctx);
+
+            //agregar validaciones
+
+            const result = await userMutationService.createUser(params);
+
+            return result[0];
+        },
+        async updatePasswordUser(parent, params, ctx){
+            middlewareCheck([
+                {type: MiddlewareType.AUTH},
+                {type: MiddlewareType.ACL,
+                    roles: ['user_update_password']}
+            ], ctx);
+
+            const result = await userMutationService.updatePasswordUser(params);
+
+            return result[0];
+
+        },
+        async updateUser(parent, params, ctx){
+            middlewareCheck([
+                {type: MiddlewareType.AUTH},
+                {type: MiddlewareType.ACL,
+                    roles: ['user_update']}
+            ], ctx);
+
+            //agregar validaciones
+
+            const result = await userMutationService.updateUser(params);
+
+            return result[0];
         }
     }
 }
