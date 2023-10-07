@@ -40,6 +40,9 @@ const pointSaleResolver = {
     },
     PointSale:{
         productos: async (params) => {
+        try {
+            
+        
             const product_PointSale = await productPointSaleQueryService.getFindByPointSaleId(params.codigo);
             const producto = await productQueryService.getAllProduct();    
 
@@ -48,19 +51,26 @@ const pointSaleResolver = {
             product_PointSale.forEach(ppSale => {
                 const resultado = producto.find( (prod) => prod.codigo == ppSale.producto)
                 
-                let {codigo, nombre, descripcion, activo, tipo_producto} = resultado;
-
-                arrayProductos.push( {
-                    codigo_punto_venta: ppSale.codigo, 
-                    codigo: codigo, 
-                    nombre: nombre, 
-                    descripcion: descripcion, 
-                    precio: ppSale.precio, 
-                    activo: ppSale.activo
-                } )
-
+                if(resultado?.codigo === undefined){
+                    return arrayProductos
+                }
+                    let {codigo, nombre, descripcion, activo, tipo_producto} = resultado;
+                    arrayProductos.push( {
+                        codigo_punto_venta: ppSale.codigo, 
+                        codigo: codigo, 
+                        nombre: nombre, 
+                        descripcion: descripcion, 
+                        precio: ppSale.precio, 
+                        activo: ppSale.activo
+                    } )
+                
             })
+
             return arrayProductos
+
+        } catch (error) {
+            console.log(error)
+        }
         }
     },
     Mutation: {

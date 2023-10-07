@@ -5,13 +5,23 @@ export default class ProductMutationService {
     async deleteProductById(params: IProduct): Promise<IProduct[]>{
         const { codigo } = params;
         try {
-            const query = `DELETE FROM pro_producto
-                            WHERE pro_codigo=${codigo}
+
+            const query = `UPDATE pro_producto
+                            SET pro_activo = false
+                            WHERE pro_codigo = ${codigo}
                             RETURNING pro_codigo as codigo, 
                                         pro_nombre as nombre,
                                         pro_descripcion as descripcion,
                                         pro_activo as activo,
                                         pro_codtip as tipo_producto;`;
+
+            // const query = `DELETE FROM pro_producto
+            //                 WHERE pro_codigo=${codigo}
+            //                 RETURNING pro_codigo as codigo, 
+            //                             pro_nombre as nombre,
+            //                             pro_descripcion as descripcion,
+            //                             pro_activo as activo,
+            //                             pro_codtip as tipo_producto;`;
 
             const result = await pool.query(query);
 

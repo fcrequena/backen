@@ -1,0 +1,10 @@
+type User {
+    codigo: Int!
+    nombre: String!
+    correo: String!
+    activo: Boolean
+    password: String!
+    token: String!
+    vencimiento: String!
+    inicio: String!
+}

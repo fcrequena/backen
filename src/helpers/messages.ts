@@ -1,4 +1,4 @@
-export const MESSAGE_INVALID_CREDENTIALS = 'Invalid email or password!';
-export const MESSAGE_YOU_DONT_HAVE_REQUIRED_PERMISSIONS = 'You don\'t have requited permissions !';
-export const MESSAGE_INVALID_PARAMETER = 'Invalid parameter!';
-export const MESSAGE_UNAUTHORIZED = 'Invalid parameter!';
+export const MESSAGE_INVALID_CREDENTIALS = 'Usuario o contraseña incorrectos!';
+export const MESSAGE_YOU_DONT_HAVE_REQUIRED_PERMISSIONS = 'No tiene permisos para realizar la acción!';
+export const MESSAGE_INVALID_PARAMETER = 'Parametros invalidos!';
+export const MESSAGE_UNAUTHORIZED = 'Parametros invalidos!';

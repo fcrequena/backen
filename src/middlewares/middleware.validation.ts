@@ -9,11 +9,11 @@ export const valTypeProduct = async ( params, action ) => {
             throw new Error('Todos los campos son obligatorios');
         }
         
-        if(nombre.length <= 10){
+        if(nombre.length <= 1){
             throw new Error('El campo nombre debe ser mayor a 5 caracteres.');
         }
         
-        if(descripcion.length <= 10){
+        if(descripcion.length <= 1){
             throw new Error('El campo nombre debe ser mayor a 5 caracteres.');
         }
 
@@ -47,11 +47,11 @@ export const valTypeProduct = async ( params, action ) => {
             throw new Error('Todos los campos son obligatorios');
         }
         
-        if(nombre.length <= 5){
+        if(nombre.length <= 1){
             throw new Error('El campo nombre debe ser mayor a 5 caracteres.');
         }
         
-        if(descripcion.length <= 5){
+        if(descripcion.length <= 1){
             throw new Error('El campo nombre debe ser mayor a 5 caracteres.');
         }
 
@@ -84,11 +84,11 @@ export const valTypeProduct = async ( params, action ) => {
             throw new Error('Todos los campos son obligatorios');
         }
         
-        if(nombre.length <= 3){
+        if(nombre.length <= 1){
             throw new Error('El campo nombre debe ser mayor a 3 caracteres.');
         }
         
-        if(descripcion.length <= 3){
+        if(descripcion.length <= 1){
             throw new Error('El campo nombre debe ser mayor a 3 caracteres.');
         }
 

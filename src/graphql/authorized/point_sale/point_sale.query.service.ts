@@ -10,7 +10,8 @@ export default class PointSaleQueryService {
                     puv_descripcion as descripcion, 
                     puv_activo as activo, 
                     puv_cantidad as cantidad 
-                FROM public.puv_punto_venta;
+                FROM public.puv_punto_venta
+                where puv_activo = true;
                 `
 
             const result = await pool.query(query);

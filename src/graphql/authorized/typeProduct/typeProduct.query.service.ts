@@ -10,7 +10,8 @@ export default class TypeQueryService {
                 tip_descripcion as descripcion,
                 tip_es_producto as es_producto, 
                 tip_activo as activo
-            FROM tip_tipo_producto`
+            FROM tip_tipo_producto
+            WHERE tip_activo = true`
             const result = await pool.query(query);
             return result.rows;
             

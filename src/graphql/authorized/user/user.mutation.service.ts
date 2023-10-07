@@ -29,26 +29,20 @@ export default class UserMutationService {
 
     async createUser(params): Promise<IUser[]>{
         try {
-            const { nombre, correo, password} = params;
-
-            let contrasena = await createHashPassword(password);
+            const { nombre, correo, contrasena, rol} = params;
+            
+            let nuevaContrasena = await createHashPassword(contrasena);
 
             const query = `INSERT INTO public.usr_usuario
             ( usr_nombre, usr_correo, usr_activo, usr_password)
-            VALUES( '${nombre}', '${correo}', true , '${contrasena}')
-            RETURNING usr_codigo as codigo, 
-                        usr_nombre as nombre, 
+            VALUES( '${nombre}', '${correo}', true , '${nuevaContrasena}')
+            RETURNING usr_codigo as codigo,
+                        usr_nombre as nombre,
                         usr_correo as correo,
-                        usr_activo as activo,
+                        usr_activo as estado, 
                         usr_password as contrasena;`;
 
             const result = await pool.query(query);
-
-            let mensaje =  'Usuario creado correctamente.';
-            if(result.rowCount == 0){
-                mensaje = 'No se puede crear el usuario.';
-            }
-
             return [{
                 codigo: result.rows[0].codigo,
                 nombre: result.rows[0].nombre,
@@ -59,9 +53,10 @@ export default class UserMutationService {
                 token: "",
                 vencimiento: "",
                 inicio: ""
-            }];;   
+            }];
 
         } catch (error) {
+            console.error(`Error al crear usuario ${error}`)
             return error;
         }
     }

@@ -5,14 +5,21 @@ export default class PointSaleMutationService {
     async deletePointSaleById(params: IPointSale): Promise<IPointSale[]>{
         const { codigo } = params;
         try {
-            const query = `DELETE FROM puv_punto_venta
+            const query = `UPDATE puv_punto_venta
+                                SET puv_activo = false
                             WHERE puv_codigo=${codigo}
                             RETURNING puv_codigo as codigo, 
                                         puv_nombre as nombre,
                                         puv_descripcion as descripcion,
                                         puv_activo as activo,
                                         puv_cantidad as cantidad;`;
-
+        // const query = `DELETE FROM puv_punto_venta
+        // WHERE puv_codigo=${codigo}
+        // RETURNING puv_codigo as codigo, 
+        //             puv_nombre as nombre,
+        //             puv_descripcion as descripcion,
+        //             puv_activo as activo,
+        //             puv_cantidad as cantidad;`;
             const result = await pool.query(query);
 
             if(result.rowCount == 0){

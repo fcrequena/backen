@@ -10,7 +10,8 @@ export default class ProductQueryService {
                     pro_descripcion as descripcion, 
                     pro_activo as activo, 
                     pro_codtip as tipo_producto 
-                FROM public.pro_producto;
+                FROM public.pro_producto
+                where pro_activo = true;
                 `
 
             const result = await pool.query(query);
@@ -34,9 +35,13 @@ export default class ProductQueryService {
                 `
 
             const result = await pool.query(query);
+
+            if(result.rows[0] == undefined)
+                throw new Error("Registro no encontrado.");
+
             return result.rows;
         } catch (error) {
-            console.error('Error al obtener productos', error)
+            throw new Error(error);
             return []
         }
     }
@@ -54,7 +59,8 @@ export default class ProductQueryService {
             const result = await pool.query(query);
             return result.rows;
         } catch (error) {
-            console.error('Error al obtener productos', error)
+            //console.error('Error al obtener productos', error)
+            throw new Error(error);
             return []
         }
     }

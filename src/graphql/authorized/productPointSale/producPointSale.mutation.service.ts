@@ -5,13 +5,23 @@ export default class ProductPointSaleMutationService {
     async deleteProductPointSaleById(params: IProductPointSale): Promise<IProductPointSale[]>{
         const { codigo } = params;
         try {
-            const query = `DELETE FROM ppv_producto_punto_venta 
+            const query = `UPDATE ppv_producto_punto_venta 
+                            SET ppv_activo = false
                             WHERE ppv_codigo = ${codigo}
                             RETURNING ppv_codigo as codigo, 
                                         ppv_codpro as producto,
                                         ppv_codpuv as punto_venta,
                                         ppv_precio as precio,
                                         ppv_activo as activo;`;
+
+            // const query = `DELETE FROM ppv_producto_punto_venta 
+            // WHERE ppv_codigo = ${codigo}
+            // RETURNING ppv_codigo as codigo, 
+            //             ppv_codpro as producto,
+            //             ppv_codpuv as punto_venta,
+            //             ppv_precio as precio,
+            //             ppv_activo as activo;`;
+            
 
             const result = await pool.query(query);
             if(result.rowCount == 0){

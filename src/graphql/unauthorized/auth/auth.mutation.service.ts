@@ -3,7 +3,7 @@ import { validarHashPassword } from "../../../helpers/security";
 var format = require('date-format');
 import { IUser } from "../../../interfaces/db.interface";
 
-export default class AuthQueryService {
+export default class AuthMutationService {
     async login(email: string, password: string): Promise<IUser[]>{
         try {
             const query = `SELECT 
@@ -23,9 +23,9 @@ export default class AuthQueryService {
                 
             }
             const passValido = await validarHashPassword(usuario.nombre, password, usuario.password)
-            
-            if(passValido.response === false){
-                return passValido.message
+            if(passValido.response == false){
+                throw new Error(`${passValido.message}`);
+                //return passValido.message
             }
             
             const queryToken = `select 
