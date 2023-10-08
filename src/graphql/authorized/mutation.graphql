@@ -8,7 +8,8 @@ type Mutation {
 
     updatePasswordUser(
                 codigo: Int!,
-                contrasena: String!
+                contrasena: String!,
+                valcontrasena: String!
             ): User!
 
     updateUser(
@@ -17,6 +18,15 @@ type Mutation {
         correo: String!,
         estado: Boolean,
         rol: Int!
+    ): User!
+
+    createPointSaleUser(
+        codigo: Int!,
+        puntos_venta: [String!]!
+    ):[PointSale!]!
+
+    deleteUser(
+        codigo: Int!
     ): User!
 
     deleteTypeProductById(codigo: Int!): TypeProduct!
@@ -52,7 +62,7 @@ type Mutation {
                         descripcion: String!,
                         activo: Boolean!,
                         cantidad: Int!): PointSale!
-
+getPointSaleById(codigo: Int!): [PointSale]!
     deleteProductPointSaleById(codigo: Int!): ProductPointSale!
 
     createProductPointSale(producto: Int!,

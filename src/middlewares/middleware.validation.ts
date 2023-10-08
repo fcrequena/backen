@@ -112,6 +112,57 @@ export const valTypeProduct = async ( params, action ) => {
     }
  }     
 
+ export const valUsers = async (params, action) => {
+    
+    const {codigo, nombre, correo, contrasena, valcontrasena } = params;
+    console.log({action, contrasena, valcontrasena})
+
+    if(action == 'create'){
+        if(!nombre || !correo || !contrasena ){
+            throw new Error('Todos los campos son obligatorios');
+        }
+    }
+
+    if(action == 'create'){
+        const query = `select usr_codigo , usr_nombre, usr_correo 
+                        from usr_usuario
+                        where ltrim(rtrim(upper(usr_correo))) = ltrim(rtrim(upper('${correo}')))`
+        const result = await pool.query(query);
+        const {usr_codigo, usr_nombre, usr_correo } = result;
+        
+        if(result.rowCount !== 0){
+            throw new Error('La cuenta ya se encuentra en uso.');
+        }
+    }
+    if(action == 'update'){
+        
+        if(!nombre || !correo || !codigo ){
+            throw new Error('Todos los campos son obligatorios');
+        }
+        
+        const queryCorreo = `select usr_codigo , usr_nombre, usr_correo 
+        from usr_usuario
+        where ltrim(rtrim(upper(usr_correo))) = ltrim(rtrim(upper('${correo}')))
+        and usr_codigo not in (${codigo})`
+        
+        const resultCorreo = await pool.query(queryCorreo)
+
+        if(resultCorreo.rowCount !== 0){
+            throw new Error('La cuenta ingresada ya se encuentra en uso.');
+        }
+
+    }
+
+    if(action == 'check'){
+        if(contrasena !== valcontrasena){
+            throw new Error('Los valores ingresados no son iguales.')
+        }
+    }
+
+
+
+ }
+
  export const valProductPointSale = async ( params, action ) => {
     const {codigo = undefined, producto, punto_venta, precio, activo} = params;
 

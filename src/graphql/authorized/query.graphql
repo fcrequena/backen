@@ -9,7 +9,7 @@ type Query {
     getProductById(codigo: Int!): [Product]!
 
     getAllPointSale: [PointSale!]!
-    getPointSaleById(codigo: Int!): [PointSale]!
+    
     
     getAllProductPointSale: [ProductPointSale!]!
     getProductPointSaleById(codigo: Int!): [ProductPointSale]!

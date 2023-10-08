@@ -1,9 +1,12 @@
 import UserQueryService  from "./user.query.service";
 import UserMutationService from "./user.mutation.service";
 import { middlewareCheck, MiddlewareType } from "../../../middlewares/middleware.check";
+import PointSaleMutationService from "../point_sale/point_sale.mutation.service";
+import { valUsers } from "../../../middlewares/middleware.validation";
 
 const userQueryService = new UserQueryService();
 const userMutationService = new UserMutationService();
+const pointSaleMutationService = new PointSaleMutationService();
 
 const userResolver = {
     Query: {
@@ -28,6 +31,17 @@ const userResolver = {
                 return userQueryService.getAllRol();
         }
     },
+    User:{
+        punto_venta: async (params) => {
+            try {
+                const point_sale = await pointSaleMutationService.getPointSaleById(params.codigo);
+                console.log("puntos",point_sale)
+                return point_sale;
+            } catch (error) {
+                console.log({error})
+            }
+        }
+    },
     Mutation: {
         deleteSession(parent, {id}, ctx){
             if(id == ctx.codigo){
@@ -44,7 +58,7 @@ const userResolver = {
                     roles: ['user_create']}
             ], ctx);
 
-            //agregar validaciones
+            await valUsers(params, 'create');
 
             const result = await userMutationService.createUser(params);
 
@@ -56,6 +70,8 @@ const userResolver = {
                 {type: MiddlewareType.ACL,
                     roles: ['user_update_password']}
             ], ctx);
+            
+            await valUsers(params, 'check');
 
             const result = await userMutationService.updatePasswordUser(params);
 
@@ -69,11 +85,34 @@ const userResolver = {
                     roles: ['user_update']}
             ], ctx);
 
-            //agregar validaciones
+            await valUsers(params, 'update');
 
             const result = await userMutationService.updateUser(params);
 
             return result[0];
+        },
+        async deleteUser(parent, params, ctx){
+            middlewareCheck([
+                {type: MiddlewareType.AUTH},
+                {type: MiddlewareType.ACL,
+                    roles: ['user_update']}
+            ], ctx);
+
+            const result = await userMutationService.deleteUser(params);
+
+            return result[0]
+        },
+        async createPointSaleUser(parent, params, ctx){
+            middlewareCheck([
+                {type: MiddlewareType.AUTH},
+                {type: MiddlewareType.ACL,
+                    roles: ['user_point_sale']}
+            ], ctx);
+            
+            const result = await userMutationService.createPointSaleUser(params);
+ 
+            return result;
+
         }
     }
 }

@@ -26,17 +26,6 @@ const pointSaleResolver = {
             )
             return pointSaleQueryService.getAllPointSale();
         },
-        getPointSaleById(parent, {codigo}, ctx){
-            middlewareCheck(
-                [
-                    {type: MiddlewareType.AUTH},
-                    {type: MiddlewareType.ACL, 
-                        roles: ['point_sale_search']}
-                ],
-                ctx
-            )
-            return pointSaleQueryService.getPointSaleById(codigo);
-        },
     },
     PointSale:{
         productos: async (params) => {
@@ -111,6 +100,17 @@ const pointSaleResolver = {
             const result = await pointSaleMutationService.updatePointSale(params);
             
             return result;
+        },
+        getPointSaleById(parent, {codigo}, ctx){
+            middlewareCheck(
+                [
+                    {type: MiddlewareType.AUTH},
+                    {type: MiddlewareType.ACL, 
+                        roles: ['point_sale_search']}
+                ],
+                ctx
+            )
+            return pointSaleMutationService.getPointSaleById(codigo);
         },
     }
 }
