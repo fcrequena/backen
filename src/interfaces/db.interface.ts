@@ -5,6 +5,11 @@
 //     password: string;
 // }
 
+export interface ITypeRol{
+    codigo: number;
+    mensaje: string; 
+    activo: boolean;
+}
 export interface IMessage{
     codigo: number;
     mensaje: string; 

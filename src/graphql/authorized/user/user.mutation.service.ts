@@ -1,6 +1,6 @@
 
 import  pool  from "../../../helpers/pg.conn";
-import { IMessage, IUser, IPointSale } from "../../../interfaces/db.interface";
+import { ITypeRol, IUser, IPointSale } from "../../../interfaces/db.interface";
 
 import { createHashPassword } from "../../../helpers/security";
 
@@ -189,7 +189,6 @@ export default class UserMutationService {
                     const rQuery = await pool.query(query);
 
                     return rPuntoVenta;
-
                 }
             })
 
@@ -205,6 +204,50 @@ export default class UserMutationService {
             return valor;
         } catch (error) {
             throw new Error ("Error al asociar punto de venta con el usuario" + error)
+        }
+    }
+
+    async createRolUser(params): Promise<ITypeRol[]>{
+        try {
+            const { codigo, roles} = params;
+
+            // /**Eliminamos los puntos de venta */
+            const queryDelete = ` DELETE FROM public.rus_rol_usuario WHERE rus_codusr = ${codigo}`;
+            const resultDelete = await pool.query(queryDelete);
+
+             const val = roles.map( async(valor)  => {
+                const querySelect = `SELECT tir_codigo as codigo, 
+                                            tir_nombre as nombre,
+                                            tir_activo as activo
+                FROM tir_tipo_rol ttr 
+                WHERE tir_nombre = '${valor}'; `
+
+                const resultSelect = await pool.query(querySelect);
+
+                if(resultSelect.rowCount !== 0){
+                    const rPuntoVenta = resultSelect.rows[0];
+    
+                    const query = `INSERT INTO public.rus_rol_usuario
+                    (rus_codusr, rus_codtir)
+                    VALUES( ${codigo}, ${rPuntoVenta.codigo});`
+
+                    const rQuery = await pool.query(query);
+
+                    return rPuntoVenta;
+                }
+            })
+
+            let valor = <ITypeRol[]> await Promise.all(val)
+            .then((resultados) => {
+                console.log(resultados)
+                return resultados; // Esto imprimirá un array con los resultados de todas las promesas
+            })
+            .catch((error) => {
+                throw new Error (error);
+            });
+            return valor;
+        } catch (error) {
+            throw new Error ("Error al asociar ROL con el usuario" + error)
         }
     }
 

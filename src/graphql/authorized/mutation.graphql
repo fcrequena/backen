@@ -25,6 +25,11 @@ type Mutation {
         puntos_venta: [String!]!
     ):[PointSale!]!
 
+    createRolUser(
+        codigo: Int!,
+        roles: [String!]!
+    ):[TypeRol!]!
+
     deleteUser(
         codigo: Int!
     ): User!

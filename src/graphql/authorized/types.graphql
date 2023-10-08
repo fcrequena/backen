@@ -8,6 +8,7 @@ type User {
     vencimiento: String!
     inicio: String!
     punto_venta: [PointSale!]!
+    roles: [TypeRol!]!
 }
 
 type Rol{
@@ -90,4 +91,9 @@ type JournalDetail{
     descripcion: String!   
 }
 
+type TypeRol{
+    codigo: Int!, 
+    nombre: String!,
+    activo: Boolean!
+}
 

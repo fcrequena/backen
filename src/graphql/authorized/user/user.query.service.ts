@@ -1,4 +1,4 @@
-import { IUser, IRol } from "../../../interfaces/db.interface";
+import { IUser, IRol, ITypeRol } from "../../../interfaces/db.interface";
 import { MESSAGE_INVALID_PARAMETER } from "../../../helpers/messages";
 import  pool  from "../../../helpers/pg.conn";
 
@@ -38,5 +38,41 @@ export default class UserQueryService {
             return []
         }
     }
+
+    async getAllTypeRol(): Promise<ITypeRol[]>{
+        try {
+            const query = `select 
+                    tir_codigo as codigo,  
+                    tir_nombre as nombre, 
+                    tir_activo as activo
+                from tir_tipo_rol ttr;`
+
+            const result = await pool.query(query);
+            return result.rows;
+        } catch (error) {
+            console.log('Error en obtener roles', error)
+            return []
+        }
+    }
+
+    async getFindTypeRolUser(codigo: number): Promise<ITypeRol[]>{
+        try {
+            const query = `select 
+                    tir_codigo as codigo,  
+                    tir_nombre as nombre, 
+                    tir_activo as activo
+                    from tir_tipo_rol ttr
+                    inner join rus_rol_usuario rru ON ttr.tir_codigo = rru.rus_codtir 
+                    where rru.rus_codusr = ${codigo}; 
+                    `
+
+            const result = await pool.query(query);
+            return result.rows;
+        } catch (error) {
+            console.log('Error en obtener roles del usuario', error)
+            return []
+        }
+    }
+
 }
 

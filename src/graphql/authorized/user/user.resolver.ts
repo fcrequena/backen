@@ -29,6 +29,16 @@ const userResolver = {
                 ], 
                 ctx)
                 return userQueryService.getAllRol();
+        },
+        getAllTypeRol(parent, _, ctx){
+            middlewareCheck(
+                [
+                    { type: MiddlewareType.AUTH},
+                    { type: MiddlewareType.ACL, 
+                        roles: ['user_type_rol']}
+                ], 
+                ctx)
+                return userQueryService.getAllTypeRol();
         }
     },
     User:{
@@ -40,7 +50,16 @@ const userResolver = {
             } catch (error) {
                 console.log({error})
             }
-        }
+        },
+        roles: async (params) => {
+            try {
+                const type_roles = await userQueryService.getFindTypeRolUser(params.codigo);
+                console.log("puntos",type_roles)
+                return type_roles;
+            } catch (error) {
+                console.log({error})
+            }
+        },
     },
     Mutation: {
         deleteSession(parent, {id}, ctx){
@@ -110,6 +129,18 @@ const userResolver = {
             ], ctx);
             
             const result = await userMutationService.createPointSaleUser(params);
+ 
+            return result;
+
+        },
+        async createRolUser(parent, params, ctx){
+            middlewareCheck([
+                {type: MiddlewareType.AUTH},
+                {type: MiddlewareType.ACL,
+                    roles: ['user_rol']}
+            ], ctx);
+            
+            const result = await userMutationService.createRolUser(params);
  
             return result;
 
