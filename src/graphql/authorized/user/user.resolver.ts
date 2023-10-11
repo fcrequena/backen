@@ -45,7 +45,7 @@ const userResolver = {
         punto_venta: async (params) => {
             try {
                 const point_sale = await pointSaleMutationService.getPointSaleById(params.codigo);
-                console.log("puntos",point_sale)
+                
                 return point_sale;
             } catch (error) {
                 console.log({error})
@@ -54,7 +54,7 @@ const userResolver = {
         roles: async (params) => {
             try {
                 const type_roles = await userQueryService.getFindTypeRolUser(params.codigo);
-                console.log("puntos",type_roles)
+                
                 return type_roles;
             } catch (error) {
                 console.log({error})
@@ -67,7 +67,10 @@ const userResolver = {
                 throw new Error("No puede eliminar la session de otro usuario");
             }
 
-            middlewareCheck([{type: MiddlewareType.AUTH}, {type: MiddlewareType.ACL, roles: ['user_session_del']}], ctx)
+            middlewareCheck([{type: MiddlewareType.AUTH}, 
+                    {type: MiddlewareType.ACL, 
+                    roles: ['user_session_del']}]
+                    , ctx)
             return userMutationService.deleteSession(id);
         },
         async createUser(parent, params, ctx){
@@ -114,7 +117,7 @@ const userResolver = {
             middlewareCheck([
                 {type: MiddlewareType.AUTH},
                 {type: MiddlewareType.ACL,
-                    roles: ['user_update']}
+                    roles: ['user_delete']}
             ], ctx);
 
             const result = await userMutationService.deleteUser(params);

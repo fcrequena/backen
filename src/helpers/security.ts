@@ -9,7 +9,7 @@ export const createHashPassword = async (password) => {
     return hashedPassword;
 }
 
-export const validarHashPassword = async (username, password, user_password) => {
+export const validarHashPassword = async (username, password, user_password, codigo) => {
 
     const jwtSecret = '4pp_Y4d1r4_'
 
@@ -21,7 +21,7 @@ export const validarHashPassword = async (username, password, user_password) => 
         }
     }
 
-    const token = jwt.sign({userId: username}, 
+    const token = jwt.sign({userId: username, codigo:codigo}, 
                             jwtSecret, 
                             {expiresIn: '1h'});
 
