@@ -74,12 +74,12 @@ export interface IProductPointSale{
 }
 
 export interface IJournal{
-    codigo: number;
+    codigo_punto_venta: number;
+}
+
+
+export interface IJournalDetail{
     codigo_dia: number;
-    codigo_producto: number;
-    cantidad: number;
-    cantidad_personas: number;
-    descripcion: string;
 }
 
 export interface IRepJournal{

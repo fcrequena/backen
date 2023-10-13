@@ -55,19 +55,6 @@ export default class ProductQueryService {
             `
             const resProductos = await pool.query(queryProductos)
             const arrayProductos = resProductos.rows;
-            // console.log(resDias.rows)
-            // console.log(resProductos.rows)
-
-            // const resultado = a.map(objA => {
-            //     const objetoB = b.find(objB => objB.id === objA.id);
-            //     if (objetoB) {
-            //       // Combina los objetos utilizando Object.assign
-            //       return Object.assign({}, objA, objetoB);
-            //       // O utilizando el operador de propagación
-            //       // return { ...objA, ...objetoB };
-            //     }
-            //     return objA; // Si no se encuentra en b, devuelve el objeto de a
-            //   });
 
             const productos = arrayProductos.map(producto => {
                 const ventasPorProducto = ventas.find(ventaProducto => ventaProducto.codigo_producto === producto.codigo_producto);

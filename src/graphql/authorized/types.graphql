@@ -1,3 +1,9 @@
+scalar Date
+    
+type MyType {
+    created: Date
+}
+
 type User {
     codigo: Int!
     nombre: String!
@@ -42,6 +48,7 @@ type ProductDetail{
     descripcion: String!
     precio: Float!
     activo: Boolean!
+    tipo_producto: Int!
 }
 
 type PointSale{
@@ -78,8 +85,15 @@ type RepJournal{
     descripcion: String!
     activo: Boolean!
     cantidad: Int!
-    fecha: String!
+    fecha: Date!
     productos: [RepJournalDetail!]
+}
+
+type Journal{
+    codigo_dia: Int!
+    codigo_punto_venta: Int!
+    fecha: Date!
+    abierto: Boolean!
 }
 
 type JournalDetail{
@@ -89,6 +103,15 @@ type JournalDetail{
     cantidad: Int!, 
     cantidad_personas: Int!, 
     descripcion: String!   
+}
+
+type JournalDetailForDay{
+    codigo_producto: Int!, 
+    nombre_producto: String!,
+    cantidad: Int!, 
+    descripcion: String!,
+    precio: Float!, 
+    tipo_producto: Int!
 }
 
 type TypeRol{

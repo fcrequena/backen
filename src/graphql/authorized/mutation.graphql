@@ -67,7 +67,9 @@ type Mutation {
                         descripcion: String!,
                         activo: Boolean!,
                         cantidad: Int!): PointSale!
+                        
 getPointSaleById(codigo: Int!): [PointSale]!
+
     deleteProductPointSaleById(codigo: Int!): ProductPointSale!
 
     createProductPointSale(producto: Int!,
@@ -81,12 +83,19 @@ getPointSaleById(codigo: Int!): [PointSale]!
                         precio: Float!,
                         activo: Boolean!): ProductPointSale!
 
-    createJournalDetail(
-        codigo: Int!, 
+    createJournal(
+        codigo_punto_venta: Int!
+    ): Journal!
+
+    createJournalDetail( 
         codigo_dia: Int!, 
         codigo_producto: Int!, 
         cantidad: Int!, 
         cantidad_personas: Int!, 
         descripcion: String!
-    ): JournalDetail
+    ): JournalDetail!
+
+    getJournalDetailForDay(
+        codigo: Int!
+        ): [JournalDetailForDay!]!
 }

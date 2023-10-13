@@ -33,7 +33,7 @@ const pointSaleResolver = {
             
         
             const product_PointSale = await productPointSaleQueryService.getFindByPointSaleId(params.codigo);
-            const producto = await productQueryService.getAllProduct();    
+            const producto = await productQueryService.getProduct();    
 
             let arrayProductos = [];// = new Array<IProduct> ;
 
@@ -50,7 +50,8 @@ const pointSaleResolver = {
                         nombre: nombre, 
                         descripcion: descripcion, 
                         precio: ppSale.precio, 
-                        activo: ppSale.activo
+                        activo: ppSale.activo,
+                        tipo_producto: tipo_producto
                     } )
                 
             })

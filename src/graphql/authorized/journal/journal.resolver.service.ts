@@ -27,7 +27,7 @@ const journalResolve = {
         }
     },
     Mutation: {
-        async createJournalDetail(parent, params, ctx){
+        async createJournal(parent, params, ctx){
             middlewareCheck([
                 {type: MiddlewareType.AUTH},
                 {type: MiddlewareType.ACL,
@@ -35,8 +35,30 @@ const journalResolve = {
             ], ctx)
 
             const result = await journalMutationService.createJournal(params);
+            console.log({result})
+            return result;
+        },
+        async createJournalDetail(parent, params, ctx){
+            middlewareCheck([
+                {type: MiddlewareType.AUTH},
+                {type: MiddlewareType.ACL,
+                    roles: ['product_create']}
+            ], ctx)
+
+            const result = await journalMutationService.createJournalDetail(params);
 
             return result;
+        },
+        async getJournalDetailForDay(parent, params, ctx){
+            middlewareCheck([
+                {type: MiddlewareType.AUTH},
+                {type: MiddlewareType.ACL,
+                    roles: ['product_create']}
+            ], ctx)
+
+            const result = await journalMutationService.getJournalDetailForDay(params);
+            return result;
+
         }
     }
 }

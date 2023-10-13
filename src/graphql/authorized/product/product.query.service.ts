@@ -22,6 +22,29 @@ export default class ProductQueryService {
             return []
         }
     }
+
+    async getProduct(): Promise<IProduct[]>{
+        try {
+            const query = `SELECT 
+                        pro_codigo as codigo, 
+                        pro_nombre as nombre, 
+                        pro_descripcion as descripcion, 
+                        pro_activo as activo, 
+                        tip_es_producto as tipo_producto 
+                    FROM public.pro_producto
+                        inner join tip_tipo_producto on pro_codtip = tip_codigo               	
+                    where pro_activo = true;
+                `
+
+            const result = await pool.query(query);
+
+            return result.rows;
+        } catch (error) {
+            console.error('Error al obtener productos', error)
+            return []
+        }
+    }
+
     async getProductoById(codigo: number): Promise<IProduct[]>{
         try {
             const query = `SELECT 
