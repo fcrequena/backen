@@ -106,6 +106,7 @@ type JournalDetail{
 }
 
 type JournalDetailForDay{
+    codigo_detalle: Int!,
     codigo_producto: Int!, 
     nombre_producto: String!,
     cantidad: Int!, 

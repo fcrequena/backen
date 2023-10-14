@@ -68,7 +68,7 @@ type Mutation {
                         activo: Boolean!,
                         cantidad: Int!): PointSale!
                         
-getPointSaleById(codigo: Int!): [PointSale]!
+    getPointSaleById(codigo: Int!): [PointSale]!
 
     deleteProductPointSaleById(codigo: Int!): ProductPointSale!
 
@@ -92,6 +92,18 @@ getPointSaleById(codigo: Int!): [PointSale]!
         codigo_producto: Int!, 
         cantidad: Int!, 
         cantidad_personas: Int!, 
+        descripcion: String!
+    ): JournalDetail!
+
+    deleteJournalDetail( 
+        codigo_detalle: Int!,
+        codigo_dia: Int!
+    ): JournalDetail!
+
+    editJournalDetail( 
+        codigo_detalle: Int!,
+        codigo_dia: Int!,
+        cantidad: Int!, 
         descripcion: String!
     ): JournalDetail!
 

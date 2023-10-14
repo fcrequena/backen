@@ -59,6 +59,28 @@ const journalResolve = {
             const result = await journalMutationService.getJournalDetailForDay(params);
             return result;
 
+        },
+        async deleteJournalDetail(parent, params, ctx){
+            middlewareCheck([
+                {type: MiddlewareType.AUTH},
+                {type: MiddlewareType.ACL,
+                    roles: ['product_create']}
+            ], ctx)
+
+            const result = await journalMutationService.deleteJournalDetail(params);
+
+            return result;
+        },
+        async editJournalDetail(parent, params, ctx){
+            middlewareCheck([
+                {type: MiddlewareType.AUTH},
+                {type: MiddlewareType.ACL,
+                    roles: ['product_create']}
+            ], ctx)
+
+            const result = await journalMutationService.editJournalDetail(params);
+
+            return result;
         }
     }
 }

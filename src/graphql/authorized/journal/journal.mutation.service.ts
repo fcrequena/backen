@@ -76,6 +76,64 @@ export default class JournalMutationService{
         }
     }
 
+    async editJournalDetail(params): Promise<IJournal[]>{
+        try {
+            const {
+                codigo_detalle, codigo_dia, codigo_producto, cantidad, cantidad_personas, descripcion
+            } = params;
+
+            console.log({codigo_dia, cantidad, cantidad_personas, descripcion})
+            const qCreateDetail =`
+                UPDATE public.did_diario_detalle
+                SET did_cantidad = ${cantidad} ,
+                    did_descripcion = '${descripcion}'
+                WHERE did_coddia = ${codigo_dia}
+                    and did_codigo = ${codigo_detalle}
+                RETURNING did_codigo as codigo,
+                    did_coddia as codigo_dia, 
+                    did_codppv as codigo_producto, 
+                    did_cantidad as cantidad, 
+                    did_cantidad_persona as cantidad_personas, 
+                    did_descripcion as descripcion;
+            `; 
+        
+            const rCreateDetail = await pool.query(qCreateDetail);
+            return rCreateDetail.rows[0]
+            
+        } catch (error) {
+            throw new Error(`No se pudo editar el registro ${error}`);
+            
+        }
+    }
+
+    async deleteJournalDetail(params): Promise<IJournal[]>{
+        try {
+            const {
+                codigo_detalle, codigo_dia, cantidad, cantidad_personas, descripcion
+            } = params;
+
+            const qDeleteDetail =`
+            DELETE FROM public.did_diario_detalle
+            WHERE did_coddia = ${codigo_dia} 
+                and did_codigo = ${codigo_detalle}
+            RETURNING did_codigo as codigo,
+                did_coddia as codigo_dia, 
+                did_codppv as codigo_producto, 
+                did_cantidad as cantidad, 
+                did_cantidad_persona as cantidad_personas, 
+                did_descripcion as descripcion;
+            `; 
+        console.log(qDeleteDetail)
+            const rDeleteDetail = await pool.query(qDeleteDetail);
+            
+            return rDeleteDetail.rows[0]
+            
+        } catch (error) {
+            throw new Error(`No se pudo editar el registro ${error}`);
+            
+        }
+    }
+
     async getJournalDetailForDay(params): Promise<IJournalDetail[]>{
         try {
 
@@ -83,6 +141,7 @@ export default class JournalMutationService{
 
             const qConsultaDetalle = `
             select
+                did_codigo as codigo_detalle,
                 pp.pro_codigo as codigo_producto,
                 pp.pro_nombre as nombre_producto,
                 ddd2.did_cantidad as cantidad,
