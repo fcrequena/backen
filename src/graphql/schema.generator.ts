@@ -14,7 +14,6 @@ try {
     });
     
 } catch (error) {
-    console.error({generateScchema: error})
-    
+    throw new Error(`generateScchema: ${error}`)
 }
 };

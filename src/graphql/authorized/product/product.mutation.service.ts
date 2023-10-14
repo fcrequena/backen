@@ -30,8 +30,7 @@ export default class ProductMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.error(`No fue posible realizar la accion solicitada para: Producto. ${error}`)
-            return []
+            throw new Error(`No fue posible realizar la accion solicitada para: Producto. ${error}`)
         }
     }
     async createProduct(params: IProduct): Promise<IProduct[]>{
@@ -53,8 +52,7 @@ export default class ProductMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.error(`No fue posible realizar la accion solicitada para: Producto. ${error}`)
-            return []
+            throw new Error(`No fue posible realizar la accion solicitada para: Producto. ${error}`)
         }
     }
     async updateProduct(params: IProduct): Promise<IProduct[]>{
@@ -80,8 +78,7 @@ export default class ProductMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.error(`No fue posible realizar la accion solicitada para: Producto. ${error}`)
-            return []
+            throw new Error(`No fue posible realizar la accion solicitada para: Producto. ${error}`)
         }
     }
 }

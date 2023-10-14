@@ -16,8 +16,7 @@ export default class TypeQueryService {
             return result.rows;
             
         } catch (error) {
-            console.error('Erro al obtener Tipo de producto', error);
-            return []
+            throw new Error(`Erro al obtener Tipo de producto ${error}`);
         }
         
     }
@@ -37,8 +36,7 @@ export default class TypeQueryService {
             return result.rows;
             
         } catch (error) {
-            console.error('Erro al obtener Tipo de producto', error);
-            return []
+            throw new Error(`Erro al obtener Tipo de producto ${error}`);
         }
     }
     

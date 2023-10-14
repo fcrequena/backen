@@ -17,13 +17,13 @@ export default class UserMutationService {
 
             let mensaje =  'Session cerrada exitosamente.';
             if(result.rowCount == 0){
-                mensaje = 'No se puede cerrar la session.';
+                throw new Error('No se puede cerrar la session.');
             }
 
             return mensaje;   
 
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     }
 
@@ -56,8 +56,7 @@ export default class UserMutationService {
             }];
 
         } catch (error) {
-            console.error(`Error al crear usuario ${error}`)
-            return error;
+            throw new Error(`Error al crear usuario ${error}`)
         }
     }
 
@@ -90,8 +89,7 @@ export default class UserMutationService {
                 inicio: ""
             }];
         } catch (error) {
-            console.error(`Error al actualizar usuario ${error}`)
-            return error;
+            throw new Error(`Error al actualizar usuario ${error}`)
         }
     }
 
@@ -124,8 +122,7 @@ export default class UserMutationService {
                 inicio: ""
             }];
         } catch (error) {
-            console.error(`Error al actualizar contraseña del usuario ${error}`)
-            return error;
+            throw new Error(`Error al actualizar contraseña del usuario ${error}`)
         }
     }
 
@@ -156,8 +153,7 @@ export default class UserMutationService {
             }];
 
         } catch (error) {
-            console.error(`Error al crear usuario ${error}`)
-            return error;
+            throw new Error(`Error al crear usuario ${error}`)
         }
     }
 

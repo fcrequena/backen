@@ -29,8 +29,7 @@ export default class ProductPointSaleMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.error(`No fue posible realizar la accion solicitada para: Producto asociados al punto de venta. ${error}`)
-            return []
+            throw new Error(`No fue posible realizar la accion solicitada para: Producto asociados al punto de venta. ${error}`)
         }
     }
     async createProductPointSale(params: IProductPointSale): Promise<IProductPointSale[]>{
@@ -52,8 +51,7 @@ export default class ProductPointSaleMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.error(`No fue posible realizar la accion solicitada para: Producto asociados al punto de venta. ${error}`)
-            return []
+            throw new Error(`No fue posible realizar la accion solicitada para: Producto asociados al punto de venta. ${error}`)
         }
     }
     async updateProductPointSale(params: IProductPointSale): Promise<IProductPointSale[]>{
@@ -79,8 +77,7 @@ export default class ProductPointSaleMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.error(`No fue posible realizar la accion solicitada para: Producto asociados al punto de venta. ${error}`)
-            return []
+            throw new Error(`No fue posible realizar la accion solicitada para: Producto asociados al punto de venta. ${error}`)
         }
     }
 }

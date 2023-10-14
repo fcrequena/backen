@@ -19,8 +19,7 @@ export default class ProductQueryService {
              const result = await pool.query(query);
              return result.rows;
         } catch (error) {
-            console.error('Error al obtener cabecera de reporte', error)
-            return []
+            throw new Error(`Error al obtener cabecera de reporte ${error}`) 
         }
     }
     async getReportJournalDetail(codigo: number): Promise<IRepJournalDetail[]>{
@@ -121,8 +120,7 @@ export default class ProductQueryService {
             return resultadoProductos
 
         } catch (error) {
-            console.error(`Error al obtener detalles ${error}`)
-            return []
+            throw new Error(`Error al obtener detalles ${error}`)
         }
     }
 

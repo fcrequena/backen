@@ -18,8 +18,7 @@ export default class ProductQueryService {
 
             return result.rows;
         } catch (error) {
-            console.error('Error al obtener productos', error)
-            return []
+            throw new Error(`Error al obtener productos ${error}`)
         }
     }
 
@@ -40,8 +39,7 @@ export default class ProductQueryService {
 
             return result.rows;
         } catch (error) {
-            console.error('Error al obtener productos', error)
-            return []
+            throw new Error(`Error al obtener productos ${error}`)
         }
     }
 
@@ -64,8 +62,7 @@ export default class ProductQueryService {
 
             return result.rows;
         } catch (error) {
-            throw new Error(error);
-            return []
+            throw new Error(`Error al obtener el producto ${error}`);
         }
     }
 
@@ -82,9 +79,7 @@ export default class ProductQueryService {
             const result = await pool.query(query);
             return result.rows;
         } catch (error) {
-            //console.error('Error al obtener productos', error)
-            throw new Error(error);
-            return []
+            throw new Error(`Error al obtener el producto ${error}`);
         }
     }
 }

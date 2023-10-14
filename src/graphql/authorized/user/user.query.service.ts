@@ -17,8 +17,7 @@ export default class UserQueryService {
           const result = await pool.query(query);
           return result.rows;
         } catch (error) {
-            console.error('Error en obtener usuarios', error);
-            return []
+            throw new Error(`Error en obtener usuarios ${error}`);
         }
     }
 
@@ -34,8 +33,7 @@ export default class UserQueryService {
             const result = await pool.query(query);
             return result.rows;
         } catch (error) {
-            console.error('Error al obtener roles', error)
-            return []
+            throw new Error(`Error al obtener roles ${error}`)
         }
     }
 

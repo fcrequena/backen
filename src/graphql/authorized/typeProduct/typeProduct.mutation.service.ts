@@ -28,8 +28,7 @@ export default class TypeProductMutationService {
 
             return result.rows[0]
         } catch (error) {
-            console.error({deleteTypeProductById: error})
-            return []
+            throw new Error(`Error al realizar la accion sobre el producto ${error}`)
         }
     }
     async createTypeProduct(params: ITypeProduct): Promise<ITypeProduct[]>{
@@ -53,8 +52,7 @@ export default class TypeProductMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.error({createTypeProduct: error})
-            return []
+            throw new Error(`Error al realizar la accion sobre el producto ${error}`)
         }
     }
     async updateTypeProduct(params: ITypeProduct): Promise<ITypeProduct[]>{
@@ -84,8 +82,7 @@ export default class TypeProductMutationService {
 
             return result.rows[0]
         } catch (error) {
-            console.error({updateTypeProduct: error})
-            return []
+            throw new Error(`Error al realizar la accion sobre el producto ${error}`)
         }
     }
 }

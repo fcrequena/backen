@@ -27,8 +27,7 @@ export default class PointSaleMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.error(`No fue posible realizar la accion solicitada para: Punto de Venta. ${error}`)
-            return []
+            throw new Error(`No fue posible realizar la accion solicitada para: Punto de Venta. ${error}`)
         }
     }
     async createPointSale(params: IPointSale): Promise<IPointSale[]>{
@@ -50,8 +49,7 @@ export default class PointSaleMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.error(`No fue posible realizar la accion solicitada para: Punto de Venta. ${error}`)
-            return []
+            throw new Error(`No fue posible realizar la accion solicitada para: Punto de Venta. ${error}`)
         }
     }
     async updatePointSale(params: IPointSale): Promise<IPointSale[]>{
@@ -77,8 +75,7 @@ export default class PointSaleMutationService {
             }
             return result.rows[0]
         } catch (error) {
-            console.error(`No fue posible realizar la accion solicitada para: Punto de Venta. ${error}`)
-            return []
+            throw new Error(`No fue posible realizar la accion solicitada para: Punto de Venta. ${error}`)
         }
     }
     async getPointSaleById(codigo: number): Promise<IPointSale[]>{
@@ -97,8 +94,7 @@ export default class PointSaleMutationService {
             const result = await pool.query(query);
             return result.rows;
         } catch (error) {
-            console.error('Error al obtener puntos de venta', error)
-            return []
+            throw new Error(`Error al obtener puntos de venta ${error}`)
         }
     }
 }

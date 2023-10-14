@@ -17,8 +17,7 @@ export default class ProductPointSaleQueryService {
             const result = await pool.query(query);
             return result.rows;
         } catch (error) {
-            console.error('Error al obtener puntos de venta', error)
-            return []
+            throw new Error(`Error al obtener puntos de venta ${error}`)
         }
     }
     async getProductPointSaleById(codigo: number): Promise<IProductPointSale[]>{
@@ -37,8 +36,7 @@ export default class ProductPointSaleQueryService {
 
             return result.rows;
         } catch (error) {
-            console.error('Error al obtener puntos de venta', error)
-            return []
+            throw new Error(`Error al obtener puntos de venta ${error}`)
         }
     }
     async getFindByPointSaleId(codigo: number): Promise<IProductPointSale[]>{
@@ -56,8 +54,7 @@ export default class ProductPointSaleQueryService {
             const result = await pool.query(query);
             return result.rows;
         } catch (error) {
-            console.error('Error al obtener puntos de venta', error)
-            return []
+            throw new Error(`Error al obtener puntos de venta ${error}`)
         }
     }
 }
