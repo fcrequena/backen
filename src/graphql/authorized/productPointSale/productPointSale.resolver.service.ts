@@ -46,14 +46,6 @@ const productoPointSaleResolver = {
             return productPointSaleQueryService.getFindByPointSaleId(codigo);
         }
     },
-    // ProductPointSale:{
-    //     productos: (parent, params, ctx) => {
-    //         console.log({pancho: parent})
-            
-    //         const products = productQueryService.getProductoById(parent.producto)
-    //         return products
-    //     }
-    // },
     Mutation: {
         async deleteProductPointSaleById(parent, params, ctx){
             middlewareCheck([

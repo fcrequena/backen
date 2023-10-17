@@ -51,7 +51,7 @@ const userResolver = {
                 
                 return point_sale;
             } catch (error) {
-                console.log({error})
+                throw new Error(`Error al obtener puntos de venta ${error}`)
             }
         },
         roles: async (params) => {
@@ -60,7 +60,7 @@ const userResolver = {
                 
                 return type_roles;
             } catch (error) {
-                console.log({error})
+                throw new Error(`Error al obtener roles asociados al punto de venta ${error}`)
             }
         },
     },

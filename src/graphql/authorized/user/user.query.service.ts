@@ -48,8 +48,7 @@ export default class UserQueryService {
             const result = await pool.query(query);
             return result.rows;
         } catch (error) {
-            console.log('Error en obtener roles', error)
-            return []
+            throw new Error(`Error en obtener roles ${error}`)
         }
     }
 
@@ -67,8 +66,7 @@ export default class UserQueryService {
             const result = await pool.query(query);
             return result.rows;
         } catch (error) {
-            console.log('Error en obtener roles del usuario', error)
-            return []
+            throw new Error(`Error en obtener roles del usuario ${error}`)
         }
     }
 

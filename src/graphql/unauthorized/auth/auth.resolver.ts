@@ -12,7 +12,6 @@ const authResolver = {
     Mutation: {
         async login(parent, {email, password}, ctx){
             const result = await authMutationService.login(email, password);
-            console.log("Pancho", result[0])
             return result[0];
         }
     }

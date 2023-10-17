@@ -97,7 +97,7 @@ export default class AuthMutationService {
             }];
 
         } catch (error) {
-            console.log({autQuery: error})
+            throw new Error(`Error validar usuario ${error}`)
             throw new Error(error);
         }
         //const user = users.find((item) => item.correo === email && item.password === password);

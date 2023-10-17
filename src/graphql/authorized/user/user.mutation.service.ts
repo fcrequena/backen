@@ -30,7 +30,6 @@ export default class UserMutationService {
     async createUser(params): Promise<IUser[]>{
         try {
             const { nombre, correo, contrasena, rol} = params;
-            console.log({rolDelUsuario: rol})
             let nuevaContrasena = await createHashPassword(contrasena);
 
             const query = `INSERT INTO public.usr_usuario
@@ -235,7 +234,6 @@ export default class UserMutationService {
 
             let valor = <ITypeRol[]> await Promise.all(val)
             .then((resultados) => {
-                console.log(resultados)
                 return resultados; // Esto imprimirá un array con los resultados de todas las promesas
             })
             .catch((error) => {

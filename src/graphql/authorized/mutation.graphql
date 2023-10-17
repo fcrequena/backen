@@ -110,4 +110,9 @@ type Mutation {
     getJournalDetailForDay(
         codigo: Int!
         ): [JournalDetailForDay!]!
+
+    getReportJournal(codigo_punto_venta: Int!, 
+                    fecha_inicio: String!, 
+                    fecha_fin: String!
+                ): [RepJournal!]!
 }

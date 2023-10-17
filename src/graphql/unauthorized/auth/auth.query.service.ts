@@ -97,8 +97,7 @@ export default class AuthQueryService {
             }];
 
         } catch (error) {
-            console.log({autQuery: error})
-            throw new Error(error);
+            throw new Error(`Error al obtener puntos de venta ${error}`)
         }
         //const user = users.find((item) => item.correo === email && item.password === password);
 

@@ -59,7 +59,7 @@ const pointSaleResolver = {
             return arrayProductos
 
         } catch (error) {
-            console.log(error)
+            throw new Error(error)
         }
         }
     },

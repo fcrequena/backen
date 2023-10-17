@@ -99,3 +99,10 @@ export interface IRepJournalDetail{
     cantidad_personas: number; 
     descripcion: string;  
 }
+
+export interface IRepFondo{
+    fon_codigo: number;
+    fon_nombre: string; 
+    fon_porcentaje: number;
+    fon_es_fondo: boolean;
+}

@@ -1,5 +1,5 @@
 import pool from "../../../helpers/pg.conn";
-import { IJournal, IJournalDetail } from "../../../interfaces/db.interface";
+import { IJournal, IJournalDetail, IRepJournal } from "../../../interfaces/db.interface";
 export default class JournalMutationService{
     async createJournal(params: IJournal): Promise<IJournal[]>{
         const {
@@ -18,7 +18,6 @@ export default class JournalMutationService{
                         and date_trunc('day', dia_fecha) = date_trunc('day', now());`;
 
                 const rConsultaDia = await pool.query(qConsultaDia);
-                console.log(rConsultaDia.rows)
 
                 if(rConsultaDia.rowCount === 0 || rConsultaDia.rowCount === undefined){
                     
@@ -31,11 +30,9 @@ export default class JournalMutationService{
                     dia_abierto as abierto ;`
                     
                     const rCreaDia = await pool.query(qCreaDia);
-                    console.log(rCreaDia)
                         
                         return rCreaDia.rows[0];
                 }else {
-                    console.log(rConsultaDia.rows[0])
                     return rConsultaDia.rows[0];
                 }
                 
@@ -53,7 +50,6 @@ export default class JournalMutationService{
                 codigo_dia, codigo_producto, cantidad, cantidad_personas, descripcion
             } = params;
 
-            console.log({codigo_dia, codigo_producto, cantidad, cantidad_personas, descripcion})
             const qCreateDetail =`
             INSERT INTO public.did_diario_detalle
             (did_coddia, did_codppv, did_cantidad, did_cantidad_persona, did_descripcion)
@@ -82,7 +78,6 @@ export default class JournalMutationService{
                 codigo_detalle, codigo_dia, codigo_producto, cantidad, cantidad_personas, descripcion
             } = params;
 
-            console.log({codigo_dia, cantidad, cantidad_personas, descripcion})
             const qCreateDetail =`
                 UPDATE public.did_diario_detalle
                 SET did_cantidad = ${cantidad} ,
@@ -123,7 +118,6 @@ export default class JournalMutationService{
                 did_cantidad_persona as cantidad_personas, 
                 did_descripcion as descripcion;
             `; 
-        console.log(qDeleteDetail)
             const rDeleteDetail = await pool.query(qDeleteDetail);
             
             return rDeleteDetail.rows[0]
@@ -162,6 +156,28 @@ export default class JournalMutationService{
             return rConsultaDetalle.rows
         } catch (error) {
             throw new Error(`No se pudo consultar el detalle registro diarios ${error}`);
+        }
+    }
+
+    async getReportJournal(params): Promise<IRepJournal[]>{
+        try {
+
+        const {codigo_punto_venta, fecha_inicio, fecha_fin} = params;
+
+        const query = `select 
+            ppv.puv_codigo as codigo,
+            ppv.puv_nombre as nombre,
+            ppv.puv_descripcion as descripcion,
+            ppv.puv_activo as activo,
+            ppv.puv_cantidad as cantidad,
+            now() as fecha
+        from puv_punto_venta ppv 
+            where ppv.puv_codigo = ${codigo_punto_venta};`
+
+             const result = await pool.query(query);
+             return result.rows;
+        } catch (error) {
+            throw new Error(`Error al obtener cabecera de reporte ${error}`) 
         }
     }
 

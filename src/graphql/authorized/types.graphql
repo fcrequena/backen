@@ -68,27 +68,6 @@ type ProductPointSale{
     activo: Boolean!
 }
 
-type RepJournalDetail{
-    codigo_punto_venta: Int!
-    codigo_tipo_producto: Int!
-    nombre_tipo_producto: String!
-    codigo_producto: Int!
-    nombre_producto: String!
-    precio: Float!
-    cantidad: Int!
-    total: Float!
-}
-
-type RepJournal{
-    codigo: Int!
-    nombre: String!
-    descripcion: String!
-    activo: Boolean!
-    cantidad: Int!
-    fecha: Date!
-    productos: [RepJournalDetail!]
-}
-
 type Journal{
     codigo_dia: Int!
     codigo_punto_venta: Int!
@@ -119,5 +98,42 @@ type TypeRol{
     codigo: Int!, 
     nombre: String!,
     activo: Boolean!
+}
+
+type RepJournal{
+    codigo: Int!
+    nombre: String!
+    descripcion: String!
+    activo: Boolean!
+    cantidad: Int!
+    fecha: Date!
+    tipo_producto: [RepTypeProduct!]
+    fondo: [RepFondo!]
+}
+
+type RepFondo{
+    fon_codigo: Int!
+    fon_nombre: String!
+    fon_porcentaje: Float!
+    fon_es_fondo: Boolean!
+}
+
+type RepTypeProduct{
+    codigo: Int!
+    nombre: String!
+    descripcion: String!
+    es_producto: Boolean!
+    activo: Boolean!
+    es_costo: Boolean!
+    orden: Int!
+    productos: [RepJournalDetail!]
+}
+
+type RepJournalDetail{
+    codigo_producto: Int!
+    nombre_producto: String!
+    precio: Float!
+    cantidad: Int!
+    total: Float!
 }
 

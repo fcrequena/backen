@@ -25,8 +25,7 @@ export default class AUTHQueryService {
             
             return result.rows;
         } catch (error) {
-            console.error({helper: error})           
-            return []
+            throw new Error(`helper: ${error}`); 
         }
     }
 
@@ -44,8 +43,7 @@ export default class AUTHQueryService {
             return result.rows;
 
         } catch (error) {
-            console.error({rolUsers: error})
-            return []
+            throw new Error(`rolUsers: ${error}`);
         }
     }
 }
