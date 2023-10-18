@@ -48,7 +48,7 @@ export default class ProductPointSaleQueryService {
                     ppv_precio as precio,
                     ppv_activo as activo
                 FROM public.ppv_producto_punto_venta
-                    where ppv_codpuv = ${codigo};
+                    where ppv_activo = true and ppv_codpuv = ${codigo};
                 `
 
             const result = await pool.query(query);
