@@ -38,6 +38,7 @@ type TypeProduct{
     descripcion: String!
     es_producto: Boolean!
     activo: Boolean!
+    orden: Int!
     productos: [Product!]
 }
 

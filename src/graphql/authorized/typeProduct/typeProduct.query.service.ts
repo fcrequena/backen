@@ -20,7 +20,6 @@ export default class TypeQueryService {
         } catch (error) {
             throw new Error(`Erro al obtener Tipo de producto ${error}`);
         }
-        
     }
 
     async getTypeProductById(codigo): Promise<ITypeProduct[]> {
