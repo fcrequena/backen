@@ -1,7 +1,7 @@
 import { Pool } from "pg";
 require('dotenv').config();
 
-const port = process.env.PORT || 5432;
+const port = 5432;
 const dbHost = process.env.DB_HOST;
 const dbUser = process.env.DB_USER;
 const dbName = process.env.DB_DATABASE;
