@@ -4,8 +4,7 @@ import pool from "../../../helpers/pg.conn";
 export default class ProductQueryService {
     async getReportJournalDetail(parent, parametros): Promise<IRepJournalDetail[]>{
         const codigo_tipo_producto = parent.codigo;
-        // console.log({codigo_tipo_producto, nombre: parent.nombre, parametros})
-
+        
         const { codigo_punto_venta, fecha_inicio, fecha_fin } = parametros;
         try {
 
@@ -76,7 +75,6 @@ export default class ProductQueryService {
                 )
             })
 
-            console.log({totalIngresos, resultadoProductos})
             return resultadoProductos
 
         } catch (error) {

@@ -21,6 +21,12 @@ import { generateMiddlewareGraphql } from "./middlewares/graphql-express/graphql
             graphqlMiddleware
         ],
     );
+    
+    app.get('/',
+        (req, res) => {
+            res.send("Hola Mundo")
+        }
+    );
 
     app.listen(PORT, () => {
         console.log(`Graphql server started on http://localhost:${PORT}${API_PATH}`);

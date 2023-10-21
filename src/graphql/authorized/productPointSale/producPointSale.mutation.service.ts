@@ -27,7 +27,6 @@ export default class ProductPointSaleMutationService {
             // if(result.rowCount == 0){
             //     return []
             // }
-            console.log(result)
             return result.rows[0]
         } catch (error) {
             throw new Error(`No fue posible realizar la accion solicitada para: Producto asociados al punto de venta. ${error}`)

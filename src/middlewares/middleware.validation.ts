@@ -115,7 +115,6 @@ export const valTypeProduct = async ( params, action ) => {
  export const valUsers = async (params, action) => {
     
     const {codigo, nombre, correo, contrasena, valcontrasena } = params;
-    console.log({action, contrasena, valcontrasena})
 
     if(action == 'create'){
         if(!nombre || !correo || !contrasena ){

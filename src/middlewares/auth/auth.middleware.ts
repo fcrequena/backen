@@ -28,15 +28,12 @@ export const AuthMiddleware = async (request, response, next: express.NextFuncti
     if(vencimiento < fecha){
         return next()
     }
-       
-    console.log(vencimiento, fecha, "auth.middleware - pancho")
+
     //obtenemos roles
     const roles = await usuarios.rolUsers(existToken.codigo);
     const arrRoles = roles.map( rol => rol.nombre)
     existToken.roles = arrRoles
     
-    //const user: IUser = users.find((usr) => usr.token === authorizationHeader);
-    //const user = <IUser>(users.find((usr) => usr.token === authorizationHeader));
     const user = <IUser>(existToken)
     Object.assign(request, { user, isAuthenticated: true });
 

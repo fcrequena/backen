@@ -1,2 +1,3 @@
 #Lista de archivos y carpetas que no se versionan
 node_modules/
+.env
