@@ -21,7 +21,9 @@ import { generateMiddlewareGraphql } from "./middlewares/graphql-express/graphql
             graphqlMiddleware
         ],
     );
-    
+    app.post("/",(req, res) => {
+        res.send("Hola Mundo - metodo post")
+    });
     app.get('/',
         (req, res) => {
             res.send("Hola Mundo")
